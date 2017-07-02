@@ -1,6 +1,3 @@
-# Multilayer Metadata Management for the Data Driven Business
-
-## Content of this project: 
 # Fuseki 2.6 on Docker
 
 ## Purpose:
