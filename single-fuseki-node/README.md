@@ -1,9 +1,8 @@
 # Fuseki 2.6 on Docker
 
 ## Purpose:
-* We start a stateless Fuseki server to collect data from "Semantic Logging Layer"
-* We develop useful SPARQL queries and onotologies for the Data Science Process model.
-
+* We start a stateless Fuseki server to collect data from a "Semantic Logging Layer".
+* We develop useful SPARQL queries and onotologies for the "Data Science Process" model.
 
 # Docker Documentation
 ## Help
