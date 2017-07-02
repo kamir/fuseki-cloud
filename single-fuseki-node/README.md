@@ -1,21 +1,20 @@
-# Docker EMDM Fuseki
+# Multilayer Metadata Management for the Data Driven Business
 
-## Goals
+## Content of this project: 
+# Fuseki 2.6 on Docker
 
-* Start a stateless Fuseki server
-* Practice SPARQL queries and onotologies.
+## Purpose:
+* We start a stateless Fuseki server to collect data from "Semantic Logging Layer"
+* We develop useful SPARQL queries and onotologies for the Data Science Process model.
 
+
+# Docker Documentation
 ## Help
-
 * [Docs](https://docs.docker.com)
 * [Docs > Dockerfile](https://docs.docker.com/engine/reference/builder/)
 * [Docs > Commandline](https://docs.docker.com/engine/reference/commandline/cli)
 
-## Phase 1
-
-### Dockerfile
-
----SHOW CODE---
+## Working with a Dockerfile
 
 ### Build docker image
 
@@ -24,6 +23,19 @@
 ### Run docker container
 
 `docker run --publish $DOCKER_IP:3030:3030 --name=emdm-fuseki-server-container emdm-fuseki-server-image`
+
+```{r, engine='bash', count_lines}
+docker run --publish $DOCKER_IP:3030:3030 --name=emdm-fuseki-server-container-001 emdm-fuseki-server-image
+[2017-07-02 16:51:01] Server     INFO  Dataset: in-memory
+[2017-07-02 16:51:01] Server     INFO  Fuseki 2.6.0
+[2017-07-02 16:51:01] Config     INFO  FUSEKI_HOME=/apache-jena-fuseki-2.6.0
+[2017-07-02 16:51:01] Config     INFO  FUSEKI_BASE=/etc/fuseki
+[2017-07-02 16:51:01] Servlet    INFO  Initializing Shiro environment
+[2017-07-02 16:51:01] Config     INFO  Shiro file: file:///etc/fuseki/shiro.ini
+[2017-07-02 16:51:01] Config     INFO  Template file: templates/config-mem
+[2017-07-02 16:51:02] Config     INFO  Register: /emdm
+[2017-07-02 16:51:02] Server     INFO  Started 2017/07/02 16:51:02 GMT on port 3030
+```
 
 ...or publish all ports. *Caution: Not recommended for production.*
 
