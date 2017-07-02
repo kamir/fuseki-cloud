@@ -1,0 +1,87 @@
+{
+  "name" : "FUSEKI",
+  "label" : "Fuseki 2.6",
+  "description" : "The Fuseki Service (build on Apache Jena)",
+  "version" : "2.6",
+  "icon" : "images/etcslogo.png",
+  "rolesWithExternalLinks" : ["FUSEKI_SERVICE"],
+  "runAs" : { 
+    "user" : "root",
+    "group" : "root"
+   },  
+   "roles" : [
+    {
+       "name" : "FUSEKI_SERVICE",
+       "label" : "Fuseki Service",
+       "pluralLabel" : "Fuseki Services",
+       "parameters" : [
+        {
+          "name" : "port_num",
+          "label" : "Fuseki Web UI port",
+          "description" : "The Fuseki Web UI port number",
+          "required" : "true",
+          "type" : "port",
+          "default" : 9210
+        },
+        {
+          "name" : "default_graph",
+          "label" : "Path to the initial default graph to be loaded on startup.",
+          "description" : "The Fuseki default graph",
+          "required" : "true",
+          "type" : "string",
+          "default" : "/opt/fuseki/scripts/main/data/model.ttl"
+        },
+        {
+          "name" : "part_folder",
+          "label" : "Path to the initial graph partitions to be loaded on startup.",
+          "description" : "The Fuseki default graph partitions.",
+          "required" : "true",
+          "type" : "string",
+          "default" : "/home/cloudera/.etosha"
+        },
+        {
+          "name" : "private_jdk_java8",
+          "label" : "Path to JAVA8, even if Hadoop runs on Java7.",
+          "description" : "Fuseki needs Java8",
+          "required" : "true",
+          "type" : "string",
+          "default" : "/opt/jdk1.8.0_101"
+        }
+        
+        ],
+        "externalLink" : {
+          "name" : "fuseki_web_ui",
+          "label" : "Fuseki Web UI",
+          "url" : "http://${host}:${port_num}"
+        },
+        "topology" : {
+          "minInstances" : "1",
+          "maxInstances" : "1"
+        },
+        "startRunner" : {
+          "program" : "scripts/control.sh",
+          "args" : [ "start" ],
+          "environmentVariables" : {
+           "PART_FOLDER" : "${part_folder}",
+           "WEBSERVER_PORT" : "${port_num}",
+           "DEFAULT_GRAPH" : "${default_graph}",
+           "PRIVATE_JAVA_HOME" : "${private_jdk_java8}"                            
+          }
+        },
+            "commands" : [
+    {
+      "name" : "role_cmd1",
+      "label" : "Fuseki content list",
+      "description" : "List all triples in a Fuseki server.",
+      "expectedExitCodes" : [0, 1],
+      "commandRunner" : {
+        "program" : "scripts/control.sh",
+        "args" : ["list"]
+      }
+    }
+ ]
+                
+    }
+  ]
+}
+
